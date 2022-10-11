@@ -1,4 +1,7 @@
 {
+    "BLINDDEATHSAVES.blindDeathSaves.name": "Death Saves verstecken",
+    "BLINDDEATHSAVES.blindDeathSaves.hint": "Deaktivieren dieser Einstellung führt dazu, dass die Spieler die Ergebnisse ihrer Death Saves im Charakterbogen sehen und die Würfe privat statt versteckt gemacht werden.",
+
     "BLINDDEATHSAVES.notificationAlias": "Blind Death Saves",
     "BLINDDEATHSAVES.notificationText": "Dein Wurf ist versteckt für dich, weil dein Spielleiter ihn standardmäßig als geheim eingestellt hat."
 }

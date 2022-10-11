@@ -1,5 +1,19 @@
-// Hook into chat message creation and make death saves blind
+Hooks.on("init", () => {
+  // Register settings to disable blind Death Saves
+  game.settings.register("blind-death-saves", "blindDeathSaves", {
+    name: game.i18n.localize("BLINDDEATHSAVES.blindDeathSaves.name"),
+    hint: game.i18n.localize("BLINDDEATHSAVES.blindDeathSaves.hint"),
+    type: Boolean,
+    default: true,
+    scope: "world",
+    config: true,
+    restricted: true,
+  });
+});
+
+// Hook into chat message creation and catch death saves
 Hooks.on("preCreateChatMessage", (msg, options, userId) => {
+  const blindDeathSaves = game.settings.get("blind-death-saves", "blindDeathSaves");
   // check for death saving throw
   if (msg.data.flags && msg.data.flags.dnd5e?.roll?.type === "death") {
     // collect user ids of GMs
@@ -7,40 +21,26 @@ Hooks.on("preCreateChatMessage", (msg, options, userId) => {
 
     // update ChatMessage by setting the blind flag and GMs as recipients
     msg.data.update({
-      blind: true,
+      blind: blindDeathSaves,
       whisper: gmIds,
     });
 
-    // whisper explanation for hidden roll to player
-    ChatMessage.create({
-      whisper: [game.user.id],
-      speaker: {
-        alias: game.i18n.localize("BLINDDEATHSAVES.notificationAlias"),
-      },
-      content: game.i18n.localize("BLINDDEATHSAVES.notificationText")
-    });
+    if (blindDeathSaves) {
+      // whisper explanation for hidden roll to player
+      ChatMessage.create({
+        whisper: [game.user.id],
+        speaker: {
+          alias: game.i18n.localize("BLINDDEATHSAVES.notificationAlias"),
+        },
+        content: game.i18n.localize("BLINDDEATHSAVES.notificationText")
+      });
+    }
   }
-});
-
-Hooks.on("init", () => {
-  // Register settings to hide Death Save from player's character sheet
-  game.settings.register("blind-death-saves", "hiddenDeathSaveStatus", {
-    name: "Hide Death Save Status",
-    hint: "Death Save status counters will be hidden for Players in their character sheets.",
-    type: Boolean,
-    default: false,
-    scope: "world",
-    config: true,
-    restricted: true,
-  });
 });
 
 // Remove death save counters from character sheet (only for Players)
 Hooks.on("renderActorSheet", async function (app, html, data) {
-  if (
-    game.settings.get("blind-death-saves", "hiddenDeathSaveStatus") &&
-    !game.user.isGM
-  ) {
+  if (game.settings.get("blind-death-saves", "blindDeathSaves") && !game.user.isGM) {
     if (app.options.classes.includes("tidy5e")) {
       let tidyDeathSaveIconSuccess = $(html).find(
         "div.death-saves > div > i.fas.fa-check"
@@ -59,7 +59,8 @@ Hooks.on("renderActorSheet", async function (app, html, data) {
       tidyDeathSaveCounterSuccess.remove();
       tidyDeathSaveIconFailure.remove();
       tidyDeathSaveCounterFailure.remove();
-    } else {
+    }
+    else {
       let deathSaveCounters = $(html).find(
         "div.counter.flexrow.death-saves > div.counter-value"
       );

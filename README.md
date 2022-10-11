@@ -1,7 +1,7 @@
 ![GitHub All Releases](https://img.shields.io/github/downloads/malde/blind-death-saves/total) ![GitHub Releases](https://img.shields.io/github/downloads/malde/blind-death-saves/latest/total) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/malde/blind-death-saves?label=latest%20version)
 
 # Blind Death Saves
-This is a module for the `dnd5e` system that allows the DM to automatically hide the results of death saves from players. This modules has no settings. To enable or disable the feature, simply activate or deactivate the module itself. May or may not work with other rolling modules.
+This is a module for the `dnd5e` system that allows the DM to automatically hide the results of death saves from players. It hides the rolls itself as well as the current status of the death saves on the character sheet (supports the vanilla and tidy5e sheets). This behaviour might be slightly altered by a setting, which allows the player to see the results of the rolls and the current status, but still hides the rolls from the other players. May or may not work with other rolling modules.
 
 # Installation
 ## Using The Manifest URL

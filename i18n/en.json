@@ -1,4 +1,7 @@
 {
+    "BLINDDEATHSAVES.blindDeathSaves.name": "Blind Death Saves",
+    "BLINDDEATHSAVES.blindDeathSaves.hint": "Disabling this will allow the Players to see the status of their Death Saves in the character sheet and roll as private GM roll instead of blind.",
+
     "BLINDDEATHSAVES.notificationAlias": "Blind Death Saves",
-    "BLINDDEATHSAVES.notificationText": "Your throw is hidden from you, because your Gamemaster has set it to be rolled in secret."
+    "BLINDDEATHSAVES.notificationText": "Your roll is hidden from you, because your Gamemaster has set it to be rolled in secret."
 }
