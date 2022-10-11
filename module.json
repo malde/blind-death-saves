@@ -1,7 +1,7 @@
 {
   "id": "blind-death-saves",
   "title": "Blind Death Saves",
-  "description": "Forces death saves to roll blindly.",
+  "description": "Forces death saves to be rolled blindly.",
   "version": "10.0.1",
   "authors": [
     {
@@ -27,6 +27,18 @@
   },
   "esmodules": [
     "scripts/blinddeathsaves.js"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "i18n/en.json"
+    },
+    {
+      "lang": "de",
+      "name": "Deutsch",
+      "path": "i18n/de.json"
+    }
   ],
   "url": "https://github.com/malde/blind-death-saves",
   "manifest": "https://github.com/malde/blind-death-saves/releases/latest/download/module.json",

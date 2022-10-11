@@ -1,19 +1,23 @@
 // Hook into chat message creation and make death saves blind
 Hooks.on("preCreateChatMessage", (msg, options, userId) => {
+  // check for death saving throw
   if (msg.data.flags && msg.data.flags.dnd5e?.roll?.type === "death") {
-    const gms = ChatMessage.getWhisperRecipients("GM");
-    const gmIds = gms.map((user) => user.data._id);
-    const updates = {
+    // collect user ids of GMs
+    const gmIds = ChatMessage.getWhisperRecipients("GM").map((user) => user.data._id);
+
+    // update ChatMessage by setting the blind flag and GMs as recipients
+    msg.data.update({
       blind: true,
       whisper: gmIds,
-    };
-    msg.data.update(updates);
+    });
+
+    // whisper explanation for hidden roll to player
     ChatMessage.create({
       whisper: [game.user.id],
       speaker: {
-        alias: "Blind Death Saves",
+        alias: game.i18n.localize("BLINDDEATHSAVES.notificationAlias"),
       },
-      content: "Your death save is hidden from you because your Gamemaster has set it to be rolled blindly by default."
+      content: game.i18n.localize("BLINDDEATHSAVES.notificationText")
     });
   }
 });
