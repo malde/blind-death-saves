@@ -30,9 +30,32 @@ Hooks.on("renderActorSheet", async function (app, html, data) {
     game.settings.get("blind-death-saves", "hiddenDeathSaveStatus") &&
     !game.user.isGM
   ) {
-    let deathSaveCounters = $(html).find(
-      "div.counter.flexrow.death-saves > div.counter-value"
-    );
-    deathSaveCounters.remove();
+    //Tidy5e counters
+    const tidy5eModule = game.modules?.get("tidy5e-sheet")?.active;
+
+    if (tidy5eModule === true) {
+      let tidyDeathSaveIcon1 = $(html).find(
+        "div.death-saves > div > i.fas.fa-check"
+      );
+      let tidyDeathSaveCounter1 = $(html).find(
+        "div.death-saves > div > input[type=text]:nth-child(2)"
+      );
+      let tidyDeathSaveIcon2 = $(html).find(
+        "div.death-saves > div > i.fas.fa-times"
+      );
+      let tidyDeathSaveCounter2 = $(html).find(
+        "div.death-saves > div > input[type=text]:nth-child(4)"
+      );
+
+      tidyDeathSaveIcon1.remove();
+      tidyDeathSaveCounter1.remove();
+      tidyDeathSaveIcon2.remove();
+      tidyDeathSaveCounter2.remove();
+    } else {
+      let deathSaveCounters = $(html).find(
+        "div.counter.flexrow.death-saves > div.counter-value"
+      );
+      deathSaveCounters.remove();
+    }
   }
 });
