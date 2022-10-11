@@ -8,6 +8,13 @@ Hooks.on("preCreateChatMessage", (msg, options, userId) => {
       whisper: gmIds,
     };
     msg.data.update(updates);
+    ChatMessage.create({
+      whisper: [game.user.id],
+      speaker: {
+        alias: "Blind Death Saves",
+      },
+      content: "Your death save is hidden from you because your Gamemaster has set it to be rolled blindly by default."
+    });
   }
 });
 
