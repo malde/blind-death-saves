@@ -30,27 +30,24 @@ Hooks.on("renderActorSheet", async function (app, html, data) {
     game.settings.get("blind-death-saves", "hiddenDeathSaveStatus") &&
     !game.user.isGM
   ) {
-    //Tidy5e counters
-    const tidy5eModule = game.modules?.get("tidy5e-sheet")?.active;
-
-    if (tidy5eModule === true) {
-      let tidyDeathSaveIcon1 = $(html).find(
+    if (app.options.classes.includes("tidy5e")) {
+      let tidyDeathSaveIconSuccess = $(html).find(
         "div.death-saves > div > i.fas.fa-check"
       );
-      let tidyDeathSaveCounter1 = $(html).find(
+      let tidyDeathSaveCounterSuccess = $(html).find(
         "div.death-saves > div > input[type=text]:nth-child(2)"
       );
-      let tidyDeathSaveIcon2 = $(html).find(
+      let tidyDeathSaveIconFailure = $(html).find(
         "div.death-saves > div > i.fas.fa-times"
       );
-      let tidyDeathSaveCounter2 = $(html).find(
+      let tidyDeathSaveCounterFailure = $(html).find(
         "div.death-saves > div > input[type=text]:nth-child(4)"
       );
 
-      tidyDeathSaveIcon1.remove();
-      tidyDeathSaveCounter1.remove();
-      tidyDeathSaveIcon2.remove();
-      tidyDeathSaveCounter2.remove();
+      tidyDeathSaveIconSuccess.remove();
+      tidyDeathSaveCounterSuccess.remove();
+      tidyDeathSaveIconFailure.remove();
+      tidyDeathSaveCounterFailure.remove();
     } else {
       let deathSaveCounters = $(html).find(
         "div.counter.flexrow.death-saves > div.counter-value"
