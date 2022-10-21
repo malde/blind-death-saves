@@ -1,7 +1,9 @@
 {
-    "BLINDDEATHSAVES.blindDeathSaves.name": "Death Saves verstecken",
-    "BLINDDEATHSAVES.blindDeathSaves.hint": "Deaktivieren dieser Einstellung führt dazu, dass die Spieler die Ergebnisse ihrer Death Saves im Charakterbogen sehen und die Würfe privat statt versteckt gemacht werden.",
+    "BLINDDEATHSAVES.mode.name": "Death Save Modus",
+    "BLINDDEATHSAVES.mode.hint": "Umschalten zwischen blindem und privatem Modus. Im blinden Modus sieht nur der Spielleiter die Würfe und Ergebnisse. Im privaten Modus sieht sie zusätzlich der würfelnde Spieler.",
+    "BLINDDEATHSAVES.mode.blind": "Blind (standard)",
+    "BLINDDEATHSAVES.mode.private": "Privat",
 
-    "BLINDDEATHSAVES.notificationAlias": "Blind Death Saves",
+    "BLINDDEATHSAVES.notificationAlias": "Secret Death Saves",
     "BLINDDEATHSAVES.notificationText": "Dein Wurf ist versteckt für dich, weil dein Spielleiter ihn standardmäßig als geheim eingestellt hat."
 }

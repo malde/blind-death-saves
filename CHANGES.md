@@ -1,3 +1,9 @@
+# Version 10.1.1
+
+- Rename module to *Secret Death Saves*
+- Fixes death saves still being visible to observers in private mode
+- Changes the setting to better communicate the resulting effects
+
 # Version 10.1.0
 
 - Add an option to allow switching the death saves from blind to private
