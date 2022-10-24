@@ -1,0 +1,39 @@
+name: Release module
+
+on: 
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    # Replace version and changelog/download URL in the module.json
+    - name: Replace version and changelog/download URL in the module.json
+      id: replace_version_and_download
+      uses: microsoft/variable-substitution@v1
+      with:
+        files: 'module.json'
+      env:
+        version: ${{github.event.release.tag_name}}
+        changelog: https://github.com/malde/blind-death-saves/blob/${{github.event.release.tag_name}}/CHANGES.md
+        download: https://github.com/malde/blind-death-saves/releases/download/${{github.event.release.tag_name}}/module.zip
+
+    # Zip module files
+    - run: zip -r ./module.zip module.json scripts/ i18n/ CHANGES.md README.md
+
+    # Create release for the version
+    - name: Append files to release
+      id: create_release
+      uses: ncipollo/release-action@v1
+      with:
+        allowUpdates: true
+        name: ${{ github.event.release.name }}
+        draft: false
+        prerelease: false
+        token: ${{ secrets.GITHUB_TOKEN }}
+        artifacts: './module.json, ./module.zip'
+        tag: ${{ github.event.release.tag_name }}
+        body: ${{ github.event.release.body }}
