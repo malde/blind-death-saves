@@ -1,8 +1,8 @@
 # Version 10.1.1
 
 - Rename module to *Secret Death Saves*
-- Fixes death saves still being visible to observers in private mode
-- Changes the setting to better communicate the resulting effects
+- Fix death saves still being visible to observers in private mode
+- Change the setting to better communicate the resulting effects
 
 # Version 10.1.0
 
