@@ -1,3 +1,7 @@
+# Version 11.1
+
+- Update manifest for Foundry VTT 11 compatibility
+
 # Version 10.1.1
 
 - Rename module to *Secret Death Saves*
