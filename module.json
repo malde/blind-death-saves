@@ -2,7 +2,7 @@
   "id": "blind-death-saves",
   "title": "Secret Death Saves",
   "description": "Forces death saves to be rolled blindly or privately.",
-  "version": "10.1.1",
+  "version": "11.0",
   "authors": [
     {
       "name": "malde",
@@ -11,7 +11,7 @@
   ],
   "compatibility": {
     "minimum": "10",
-    "verified": "10"
+    "verified": "11"
   },
   "relationships": {
     "systems": [
@@ -20,7 +20,8 @@
         "type": "system",
         "manifest": "https://github.com/foundryvtt/dnd5e/releases/download/release-2.0.3/system.json",
         "compatibility": {
-          "verified": "2.0.3"
+          "minimum": "2.0.3",
+          "verified": "2.2.0"
         }
       }
     ]
