@@ -1,4 +1,4 @@
-# Version 11.1
+# Version 11.0
 
 - Update manifest for Foundry VTT 11 compatibility
 - Remove deprecated config and related migration
