@@ -20,7 +20,8 @@
         "type": "system",
         "manifest": "https://github.com/foundryvtt/dnd5e/releases/download/release-2.0.3/system.json",
         "compatibility": {
-          "verified": "2.0.3"
+          "minimum": "2.0.3",
+          "verified": "2.2.0"
         }
       }
     ]

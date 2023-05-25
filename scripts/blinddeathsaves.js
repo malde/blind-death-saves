@@ -13,28 +13,6 @@ Hooks.once("ready", () => {
     config: true,
     restricted: true,
   });
-
-  // @deprecated
-  game.settings.register("blind-death-saves", "blindDeathSaves", {
-    name: "legacy mode setting",
-    hint: "don't touch this",
-    type: Boolean,
-    default: true,
-    scope: "world",
-    config: false,
-    restricted: true,
-  });
-
-  /**
-   * a bit of migration:
-   * if 'blindDeathSaves' had been set to 'false' previously, change the new 'mode' to 'private' accordingly
-   * the 'true' case doesn't need to be handled, since that corresponds to the new default anyway
-   */
-  if (!game.settings.get("blind-death-saves", "blindDeathSaves")) {
-    game.settings.set("blind-death-saves", "mode", "private");
-    // reset legacy setting so it won't mess things up if it is removed in the future
-    game.settings.set("blind-death-saves", "blindDeathSaves", true); 
-  }
 });
 
 // Hook into chat message creation and catch death saves
