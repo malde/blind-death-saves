@@ -1,3 +1,10 @@
+## Version 11.1
+
+- Support for dnd5e system version 3 (this means it no longer works with 2.4)
+- Hide the success or failure messages after 3 successes or failures
+- Remove the notification telling player why the death save is hidden
+- Add support for Argon Combat HUD
+
 ## Version 11.0
 
 - Update manifest for Foundry VTT 11 compatibility

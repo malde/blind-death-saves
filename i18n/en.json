@@ -2,8 +2,5 @@
     "BLINDDEATHSAVES.mode.name": "Death Save mode",
     "BLINDDEATHSAVES.mode.hint": "Switch between Blind and Private mode. In Blind mode the roll and results will be shown only to the GM. In Private mode the roll and results will additionally be shown to the rolling player.",
     "BLINDDEATHSAVES.mode.blind": "Blind (default)",
-    "BLINDDEATHSAVES.mode.private": "Private",
-
-    "BLINDDEATHSAVES.notificationAlias": "Secret Death Saves",
-    "BLINDDEATHSAVES.notificationText": "Your roll is hidden from you, because your Gamemaster has set it to be rolled in secret."
+    "BLINDDEATHSAVES.mode.private": "Private"
 }

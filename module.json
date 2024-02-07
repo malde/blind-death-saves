@@ -10,7 +10,7 @@
     }
   ],
   "compatibility": {
-    "minimum": "10",
+    "minimum": "11",
     "verified": "11"
   },
   "relationships": {
@@ -18,16 +18,14 @@
       {
         "id": "dnd5e",
         "type": "system",
-        "manifest": "https://github.com/foundryvtt/dnd5e/releases/download/release-2.0.3/system.json",
         "compatibility": {
-          "minimum": "2.0.3",
-          "verified": "2.2.0"
+          "minimum": "3.0.0"
         }
       }
     ]
   },
   "esmodules": [
-    "scripts/blinddeathsaves.js"
+    "scripts/secretdeathsaves.js"
   ],
   "languages": [
     {
@@ -41,6 +39,12 @@
       "path": "i18n/de.json"
     }
   ],
+  "media": [
+      {
+        "type": "setup",
+        "thumbnail": "modules/blind-death-saves/setup/thumb.webp"
+      }
+    ],
   "url": "https://github.com/malde/blind-death-saves",
   "manifest": "https://github.com/malde/blind-death-saves/releases/latest/download/module.json",
   "download": "https://github.com/malde/blind-death-saves/releases/latest/download/module.zip",
