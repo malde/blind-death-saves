@@ -15,36 +15,37 @@ Hooks.once("ready", () => {
   });
 });
 
+const blindMode = () => {
+  return game.settings.get("blind-death-saves", "mode") === "blind";
+}
+
+// Skip success and failure messages
+Hooks.on("dnd5e.rollDeathSave", (actor, roll, details) => {
+   if (details.chatString === "DND5E.DeathSaveSuccess") {
+     details.chatString = undefined;
+     // we explicitly want the 3 successes visible on the character sheet, so we override the default behaviour here
+     details.updates = {"system.attributes.death.success": Math.clamped(3, 0, 3)};
+   }
+   else if (details.chatString === "DND5E.DeathSaveFailure") {
+     details.chatString = undefined;
+   }
+});
+
 // Hook into chat message creation and catch death saves
 Hooks.on("preCreateChatMessage", (msg, options, userId) => {
-  const blindDeathSaves = game.settings.get("blind-death-saves", "mode") === "blind";
   // check for death saving throw
-  if (msg.data.flags && msg.data.flags.dnd5e?.roll?.type === "death") {
-    // collect user ids of GMs
-    const gmIds = ChatMessage.getWhisperRecipients("GM").map((user) => user.data._id);
-
+  if (msg.flags && msg.flags.dnd5e?.roll?.type === "death") {
     // update ChatMessage by setting the blind flag and GMs as recipients
-    msg.data.update({
-      blind: blindDeathSaves,
-      whisper: gmIds,
+    msg.updateSource({
+      blind: blindMode(),
+      whisper: game.users.activeGM.id,
     });
-
-    if (blindDeathSaves) {
-      // whisper explanation for hidden roll to player
-      ChatMessage.create({
-        whisper: [game.user.id],
-        speaker: {
-          alias: game.i18n.localize("BLINDDEATHSAVES.notificationAlias"),
-        },
-        content: game.i18n.localize("BLINDDEATHSAVES.notificationText")
-      });
-    }
   }
 });
 
 // Remove death save counters from character sheet (only for Players)
 Hooks.on("renderActorSheet", async function (app, html, data) {
-  if (game.settings.get("blind-death-saves", "mode") === "blind" && !game.user.isGM || !data.owner) {
+  if (blindMode() && !game.user.isGM || !data.owner) {
     if (app.options.classes.includes("tidy5e")) {
       let tidyDeathSaveIconSuccess = $(html).find(
         "div.death-saves > div > i.fas.fa-check"
@@ -66,9 +67,18 @@ Hooks.on("renderActorSheet", async function (app, html, data) {
     }
     else {
       let deathSaveCounters = $(html).find(
-        "div.counter.flexrow.death-saves > div.counter-value"
+          ".death-tray .death-saves .pips"
       );
       deathSaveCounters.remove();
     }
+  }
+});
+
+Hooks.on("renderPortraitPanelArgonComponent", (portraitPanel, element, actor) => {
+  if (blindMode() && !game.user.isGM) {
+    let deathSaveResultContainers = $(element).find(
+        ".death-save-result-container"
+    );
+    deathSaveResultContainers.remove();
   }
 });

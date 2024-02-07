@@ -2,9 +2,7 @@
 
 # Secret Death Saves
 
-<sup>(the module formerly known as _Blind Death Saves_)</sup>
-
-This is a very simple module with the intent of lowering the visibility of death saves for the players. It is intended for use with the _dnd5e_ system and supports the vanilla and tidy5e character sheets. May or may not work with other rolling modules.
+This is a very simple module with the intent of lowering the visibility of death saves for the players. It is intended for use with the _dnd5e_ system and supports the default and _tidy5e_ character sheets. May or may not work with other rolling modules.
 
 The module provides two modes of operation:
 
@@ -24,13 +22,7 @@ This can be activated by changing the mode to _Private_ in the module settings.
 
 # Installation
 
-## Using The Manifest URL
-
-1. Open up Foundry
-2. Navigate to the Add-On Modules tab
-3. Click Install Module
-4. Paste the following URL into the Manifest URL text field: `https://github.com/malde/blind-death-saves/releases/latest/download/module.json`
-5. Click Install
+Use the install module screen within the FoundryVTT setup
 
 # License
 
