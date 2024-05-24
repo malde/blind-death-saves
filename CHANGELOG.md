@@ -1,3 +1,7 @@
+## Version 12.0
+
+- Update manifest for Foundry VTT 12 compatibility
+
 ## Version 11.1
 
 - Support for dnd5e system version 3 (this means it no longer works with 2.4)
