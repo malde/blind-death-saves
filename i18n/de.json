@@ -1,6 +1,6 @@
 {
     "BLINDDEATHSAVES.mode.name": "Death Save Modus",
     "BLINDDEATHSAVES.mode.hint": "Umschalten zwischen blindem und privatem Modus. Im blinden Modus sieht nur der Spielleiter die Würfe und Ergebnisse. Im privaten Modus sieht sie zusätzlich der würfelnde Spieler.",
-    "BLINDDEATHSAVES.mode.blind": "Blind (standard)",
+    "BLINDDEATHSAVES.mode.blind": "Blind (Standard)",
     "BLINDDEATHSAVES.mode.private": "Privat"
 }
