@@ -2,7 +2,7 @@
   "id": "blind-death-saves",
   "title": "Secret Death Saves",
   "description": "Forces death saves to be rolled blindly or privately.",
-  "version": "12.0",
+  "version": "12.1",
   "authors": [
     {
       "name": "malde",

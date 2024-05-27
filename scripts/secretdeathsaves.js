@@ -46,17 +46,17 @@ Hooks.on("preCreateChatMessage", (msg, options, userId) => {
 // Remove death save counters from character sheet (only for Players)
 Hooks.on("renderActorSheet", async function (app, html, data) {
   if (blindMode() && !game.user.isGM || !data.owner) {
-    if (app.options.classes.includes("tidy5e")) {
-      let tidyDeathSaveIconSuccess = $(html).find(
-        "div.death-saves > div > i.fas.fa-check"
+    if (app.options.classes.includes("tidy5e-sheet")) {
+      const tidyDeathSaveIconSuccess = $(html).find(
+          ".death-saves > div > i.fas.fa-check"
       );
-      let tidyDeathSaveCounterSuccess = $(html).find(
-        "div.death-saves > div > input[type=text]:nth-child(2)"
+      const tidyDeathSaveCounterSuccess = $(html).find(
+        ".death-saves > div > input[type=text]:nth-child(2)"
       );
-      let tidyDeathSaveIconFailure = $(html).find(
+      const tidyDeathSaveIconFailure = $(html).find(
         "div.death-saves > div > i.fas.fa-times"
       );
-      let tidyDeathSaveCounterFailure = $(html).find(
+      const tidyDeathSaveCounterFailure = $(html).find(
         "div.death-saves > div > input[type=text]:nth-child(4)"
       );
 
@@ -66,7 +66,7 @@ Hooks.on("renderActorSheet", async function (app, html, data) {
       tidyDeathSaveCounterFailure.remove();
     }
     else {
-      let deathSaveCounters = $(html).find(
+      const deathSaveCounters = $(html).find(
           ".death-tray .death-saves .pips"
       );
       deathSaveCounters.remove();
@@ -76,7 +76,7 @@ Hooks.on("renderActorSheet", async function (app, html, data) {
 
 Hooks.on("renderPortraitPanelArgonComponent", (portraitPanel, element, actor) => {
   if (blindMode() && !game.user.isGM) {
-    let deathSaveResultContainers = $(element).find(
+    const deathSaveResultContainers = $(element).find(
         ".death-save-result-container"
     );
     deathSaveResultContainers.remove();
