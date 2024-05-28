@@ -48,22 +48,18 @@ Hooks.on("renderActorSheet", async function (app, html, data) {
   if (blindMode() && !game.user.isGM || !data.owner) {
     if (app.options.classes.includes("tidy5e-sheet")) {
       const tidyDeathSaveIconSuccess = $(html).find(
-          ".death-saves > div > i.fas.fa-check"
+        ".death-saves .fa-check"
       );
-      const tidyDeathSaveCounterSuccess = $(html).find(
-        ".death-saves > div > input[type=text]:nth-child(2)"
+      const tidyDeathSaveCounterSuccessAndFailure = $(html).find(
+        `.death-saves .death-save-result`
       );
       const tidyDeathSaveIconFailure = $(html).find(
-        "div.death-saves > div > i.fas.fa-times"
-      );
-      const tidyDeathSaveCounterFailure = $(html).find(
-        "div.death-saves > div > input[type=text]:nth-child(4)"
+        ".death-saves .fa-times"
       );
 
       tidyDeathSaveIconSuccess.remove();
-      tidyDeathSaveCounterSuccess.remove();
+      tidyDeathSaveCounterSuccessAndFailure.remove();
       tidyDeathSaveIconFailure.remove();
-      tidyDeathSaveCounterFailure.remove();
     }
     else {
       const deathSaveCounters = $(html).find(
