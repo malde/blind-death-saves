@@ -1,3 +1,12 @@
+## Version 13.0
+
+- Support for dnd5e system version 4.2
+- Update manifest for Foundry VTT 12 compatibility
+
+## Version 12.1
+
+- Fix support for the tidy5e character sheet
+
 ## Version 12.0
 
 - Update manifest for Foundry VTT 12 compatibility
