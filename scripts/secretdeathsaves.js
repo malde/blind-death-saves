@@ -33,22 +33,6 @@ Hooks.on("dnd5e.rollDeathSave", (actor, roll, details) => {
    }
 });
 
-// Skip success and failure messages (V2)
-/* TODO broken because of destructured data param
-Hooks.on("dnd5e.rollDeathSaveV2", (rolls, data) => {
-   if (data.chatString === "DND5E.DeathSaveSuccess") {
-     data.chatString = undefined;
-     // we explicitly want the 3 successes visible on the character sheet, so we override the default behaviour here
-     data.updates = {
-       "system.attributes.death.success": Math.clamped(3, 0, 3)
-     };
-   }
-   else if (data.chatString === "DND5E.DeathSaveFailure") {
-     data.chatString = undefined;
-   }
-});
-*/
-
 // Hook into chat message creation and catch death saves
 Hooks.on("preCreateChatMessage", (msg, options, userId) => {
   // check for death saving throw
@@ -59,13 +43,6 @@ Hooks.on("preCreateChatMessage", (msg, options, userId) => {
       whisper: game.users.activeGM.id,
     });
   }
-  /* TODO this is ugly as hell and only stops the message
-  let success = game.i18n.format("DND5E.DeathSaveSuccess", { name: options.speaker.alias });
-  let failure = game.i18n.format("DND5E.DeathSaveFailure", { name: options.speaker.alias });
-  if (msg.content === success || msg.content === failure) {
-    return false;
-  }
-  */
 });
 
 // Remove death save counters from character sheet (only for Players)
