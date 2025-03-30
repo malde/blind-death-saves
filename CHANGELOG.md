@@ -1,3 +1,13 @@
+## Version 13.0
+
+- Bump minimum supported dnd5e system version to 4.3
+- Bump minimum supported Foundry VTT version to 12
+- Update manifest for Foundry VTT 13 compatibility
+
+## Version 12.1
+
+- Fix support for the tidy5e character sheet
+
 ## Version 12.0
 
 - Update manifest for Foundry VTT 12 compatibility
