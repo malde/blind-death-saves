@@ -19,8 +19,8 @@ const blindMode = () => {
   return game.settings.get("blind-death-saves", "mode") === "blind";
 }
 
-// Skip success and failure messages (legacy)
-Hooks.on("dnd5e.rollDeathSave", (actor, roll, details) => {
+// Skip success and failure messages
+Hooks.on("dnd5e.rollDeathSaveV2", (rolls, details) => {
    if (details.chatString === "DND5E.DeathSaveSuccess") {
      details.chatString = undefined;
      // we explicitly want the 3 successes visible on the character sheet, so we override the default behaviour here
@@ -46,37 +46,21 @@ Hooks.on("preCreateChatMessage", (msg, options, userId) => {
 });
 
 // Remove death save counters from character sheet (only for Players)
-Hooks.on("renderActorSheet", async function (app, html, data) {
+Hooks.on("renderActorSheetV2", async function (app, html, data) {
   if (blindMode() && !game.user.isGM || !data.owner) {
     if (app.options.classes.includes("tidy5e-sheet")) {
-      const tidyDeathSaveIconSuccess = $(html).find(
-        ".death-saves .fa-check"
-      );
-      const tidyDeathSaveCounterSuccessAndFailure = $(html).find(
-        `.death-saves .death-save-result`
-      );
-      const tidyDeathSaveIconFailure = $(html).find(
-        ".death-saves .fa-times"
-      );
-
-      tidyDeathSaveIconSuccess.remove();
-      tidyDeathSaveCounterSuccessAndFailure.remove();
-      tidyDeathSaveIconFailure.remove();
+      html.querySelectorAll(".death-saves .fa-check").forEach(success => success.remove());
+      html.querySelectorAll(".death-saves .death-save-result").forEach(counter => counter.remove());
+      html.querySelectorAll(".death-saves .fa-times").forEach(failure => failure.remove());
     }
     else {
-      const deathSaveCounters = $(html).find(
-          ".death-tray .death-saves .pips"
-      );
-      deathSaveCounters.remove();
+      html.querySelectorAll(".death-tray .death-saves .pips").forEach(pip => pip.remove());
     }
   }
 });
 
 Hooks.on("renderPortraitPanelArgonComponent", (portraitPanel, element, actor) => {
   if (blindMode() && !game.user.isGM) {
-    const deathSaveResultContainers = $(element).find(
-        ".death-save-result-container"
-    );
-    deathSaveResultContainers.remove();
+    element.querySelectorAll(".death-save-result-container").forEach(container => container.remove());
   }
 });
