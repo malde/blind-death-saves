@@ -1,8 +1,7 @@
 ## Version 13.0
 
-- Bump minimum supported dnd5e system version to 4.3
-- Bump minimum supported Foundry VTT version to 12
-- Update manifest for Foundry VTT 13 compatibility
+- The minimum supported dnd5e system version has been bumped to 5.0.2
+- Due to the dnd5e 5.0 requirement of Foundry VTT 13, the minimum version is now 13
 
 ## Version 12.1
 
