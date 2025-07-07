@@ -1,3 +1,7 @@
+## Version 13.1
+
+- Add preliminary support for newer tidy5e version
+
 ## Version 13.0
 
 - The minimum supported dnd5e system version has been bumped to 5.0.2

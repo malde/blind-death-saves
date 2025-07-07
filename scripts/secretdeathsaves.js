@@ -49,18 +49,20 @@ Hooks.on("preCreateChatMessage", (msg, options, userId) => {
 Hooks.on("renderActorSheetV2", async function (app, html, data) {
   if (blindMode() && !game.user.isGM || !data.owner) {
     if (app.options.classes.includes("tidy5e-sheet")) {
-      html.querySelectorAll(".death-saves .fa-check").forEach(success => success.remove());
-      html.querySelectorAll(".death-saves .death-save-result").forEach(counter => counter.remove());
-      html.querySelectorAll(".death-saves .fa-times").forEach(failure => failure.remove());
+      html.querySelectorAll('[data-tidy-sheet-part="death-save-failures"], [data-tidy-sheet-part="death-save-successes"]')
+          .forEach(success => success.remove());
+      // fallback to legacy selectors
+      html.querySelectorAll('.death-saves .fa-check, .death-saves .death-save-result, .death-saves .fa-times')
+          .forEach(success => success.remove());
     }
     else {
-      html.querySelectorAll(".death-tray .death-saves .pips").forEach(pip => pip.remove());
+      html.querySelectorAll('.death-tray .death-saves .pips').forEach(pip => pip.remove());
     }
   }
 });
 
 Hooks.on("renderPortraitPanelArgonComponent", (portraitPanel, element, actor) => {
   if (blindMode() && !game.user.isGM) {
-    element.querySelectorAll(".death-save-result-container").forEach(container => container.remove());
+    element.querySelectorAll('.death-save-result-container').forEach(container => container.remove());
   }
 });
