@@ -1,3 +1,7 @@
+## Version 13.2
+
+- Fix _Dice So Nice!_ not showing ghost dice
+
 ## Version 13.1
 
 - Add preliminary support for newer tidy5e version

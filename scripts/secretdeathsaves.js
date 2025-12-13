@@ -19,29 +19,36 @@ const blindMode = () => {
   return game.settings.get("blind-death-saves", "mode") === "blind";
 }
 
-// Skip success and failure messages
-Hooks.on("dnd5e.rollDeathSaveV2", (rolls, details) => {
-   if (details.chatString === "DND5E.DeathSaveSuccess") {
-     details.chatString = undefined;
-     // we explicitly want the 3 successes visible on the character sheet, so we override the default behaviour here
-     details.updates = {
-       "system.attributes.death.success": Math.clamped(3, 0, 3)
-     };
-   }
-   else if (details.chatString === "DND5E.DeathSaveFailure") {
-     details.chatString = undefined;
-   }
+const secretDeathSaveClass = "secret-death-save";
+
+// Tag roll dialog
+Hooks.on("dnd5e.buildDeathSaveRollConfig", (app) => {
+  app.options.classes.push(secretDeathSaveClass);
 });
 
-// Hook into chat message creation and catch death saves
-Hooks.on("preCreateChatMessage", (msg, options, userId) => {
-  // check for death saving throw
-  if (msg.flags && msg.flags.dnd5e?.roll?.type === "death") {
-    // update ChatMessage by setting the blind flag and GMs as recipients
-    msg.updateSource({
-      blind: blindMode(),
-      whisper: game.users.activeGM.id,
-    });
+// Set roll mode
+Hooks.on("dnd5e.preRollDeathSaveV2", (cfg, dialog, msg) => {
+  msg.rollMode = blindMode() ? CONST.DICE_ROLL_MODES.BLIND : CONST.DICE_ROLL_MODES.PRIVATE;
+});
+
+// Hide roll mode selection in roll dialog
+Hooks.on("renderRollConfigurationDialog", (app, html) => {
+  if (app.options.classes?.includes(secretDeathSaveClass)) {
+    html.querySelector('[data-application-part="configuration"]').remove();
+  }
+});
+
+// Skip success and failure messages
+Hooks.on("dnd5e.rollDeathSaveV2", (rolls, details) => {
+  if (details.chatString === "DND5E.DeathSaveSuccess") {
+    details.chatString = undefined;
+    // we explicitly want the 3 successes visible on the character sheet, so we override the default behavior here
+    details.updates = {
+      "system.attributes.death.success": Math.clamped(3, 0, 3)
+    };
+  }
+  else if (details.chatString === "DND5E.DeathSaveFailure") {
+    details.chatString = undefined;
   }
 });
 
