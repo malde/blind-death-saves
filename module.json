@@ -2,7 +2,7 @@
   "id": "blind-death-saves",
   "title": "Secret Death Saves",
   "description": "Forces death saves to be rolled blindly or privately.",
-  "version": "13.1",
+  "version": "13.2",
   "authors": [
     {
       "name": "malde",
@@ -39,12 +39,6 @@
       "path": "i18n/de.json"
     }
   ],
-  "media": [
-      {
-        "type": "setup",
-        "thumbnail": "modules/blind-death-saves/setup/thumb.webp"
-      }
-    ],
   "url": "https://github.com/malde/blind-death-saves",
   "manifest": "https://github.com/malde/blind-death-saves/releases/latest/download/module.json",
   "download": "https://github.com/malde/blind-death-saves/releases/latest/download/module.zip",
