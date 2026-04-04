@@ -1,6 +1,6 @@
-## Version 13.3
+## Version 14.0
 
-- 
+- Update manifest for Foundry VTT 14 compatibility
 
 ## Version 13.2
 
