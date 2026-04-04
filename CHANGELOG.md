@@ -1,3 +1,7 @@
+## Version 14.0
+
+- Update manifest for Foundry VTT 14 compatibility
+
 ## Version 13.2
 
 - Fix _Dice So Nice!_ not showing ghost dice
