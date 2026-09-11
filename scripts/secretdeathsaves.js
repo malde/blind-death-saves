@@ -28,7 +28,7 @@ Hooks.on("dnd5e.buildDeathSaveRollConfig", (app) => {
 
 // Set roll mode
 Hooks.on("dnd5e.preRollDeathSaveV2", (cfg, dialog, msg) => {
-  msg.rollMode = blindMode() ? CONST.DICE_ROLL_MODES.BLIND : CONST.DICE_ROLL_MODES.PRIVATE;
+  msg.rollMode = blindMode() ? "blind" : "gm";
 });
 
 // Hide roll mode selection in roll dialog
