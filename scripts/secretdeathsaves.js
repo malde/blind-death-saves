@@ -38,17 +38,23 @@ Hooks.on("renderRollConfigurationDialog", (app, html) => {
   }
 });
 
-// Skip success and failure messages
+// Skip success and failure outcome in ChatMessage
 Hooks.on("dnd5e.rollDeathSaveV2", (rolls, details) => {
-  if (details.chatString === "DND5E.DeathSaveSuccess") {
-    details.chatString = undefined;
-    // we explicitly want the 3 successes visible on the character sheet, so we override the default behavior here
+  if (details?.outcome === "stable") {
+    // remove the 'stable' outcome message from the ChatMessage, which would otherwise be
+    // visible to everyone
+    details.outcome = null;
+    // we explicitly want the 3 successes visible on the character sheet, so we override
+    // the default behavior here by setting the success value to 3, instead of resetting
+    // both success and failure to 0
     details.updates = {
-      "system.attributes.death.success": Math.clamped(3, 0, 3)
+      "system.attributes.death.success": 3
     };
   }
-  else if (details.chatString === "DND5E.DeathSaveFailure") {
-    details.chatString = undefined;
+  else if (details?.outcome === "death") {
+    // remove the 'death' outcome message from the ChatMessage, which would otherwise be
+    // visible to everyone
+    details.outcome = null;
   }
 });
 
