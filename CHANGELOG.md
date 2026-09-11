@@ -1,3 +1,7 @@
+## Version 14.2
+
+- tbd
+
 ## Version 14.1
 
 - The minimum supported dnd5e system version has been bumped to 6.0.0
