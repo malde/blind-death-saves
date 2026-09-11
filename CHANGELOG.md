@@ -1,3 +1,8 @@
+## Version 14.1
+
+- The minimum supported dnd5e system version has been bumped to 6.0.0
+- The minimum supported Foundry VTT version has been bumped to 14, following the dnd5e system change
+
 ## Version 14.0
 
 - Update manifest for Foundry VTT 14 compatibility
